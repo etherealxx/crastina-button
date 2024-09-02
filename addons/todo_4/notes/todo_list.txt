@@ -1,0 +1,4 @@
+- opsi tambah hapus di tiap task buttons
+- tagging di task buttons?
+- sistem tracking per harinya dan kalender
+- sistem kalo timernya udah kelar 

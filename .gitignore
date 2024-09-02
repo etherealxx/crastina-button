@@ -1,0 +1,11 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+addons/net.yarvis.pixel_pen/*
+addons/discord-sdk-gd/*
+scripts/autoloads/discordrpc.gd
+addons/save_system/save_system_test/*
+
+# will be unignored later on
+fonts/*
+assets/UI/*

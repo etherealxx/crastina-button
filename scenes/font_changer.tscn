@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://coucbnd2pd4hn"]
+
+[ext_resource type="Script" path="res://scripts/font_changer.gd" id="1_qhrxw"]
+
+[node name="FontChanger" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_qhrxw")

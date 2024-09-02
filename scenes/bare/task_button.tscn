@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqdlqb5rnpvoc"]
+
+[ext_resource type="Script" path="res://scripts/bare/task_button.gd" id="1_eldhm"]
+
+[node name="TaskButton" type="Button"]
+size_flags_horizontal = 3
+text = "Coding"
+script = ExtResource("1_eldhm")

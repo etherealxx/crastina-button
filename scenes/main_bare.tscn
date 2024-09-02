@@ -1,0 +1,510 @@
+[gd_scene load_steps=19 format=3 uid="uid://cql1xea4i28my"]
+
+[ext_resource type="Script" path="res://scripts/main_bare.gd" id="1_bp7vr"]
+[ext_resource type="Script" path="res://scripts/bare/askers.gd" id="2_4gs74"]
+[ext_resource type="Script" path="res://scripts/bare/task_asker.gd" id="2_ug6fc"]
+[ext_resource type="PackedScene" uid="uid://bqdlqb5rnpvoc" path="res://scenes/bare/task_button.tscn" id="2_vhk1c"]
+[ext_resource type="Script" path="res://scripts/bare/big_timer.gd" id="2_ximqf"]
+[ext_resource type="Script" path="res://scripts/bare/duration_asker.gd" id="4_kn235"]
+[ext_resource type="Script" path="res://scripts/bare/timer_before_starting.gd" id="6_qswlw"]
+[ext_resource type="Script" path="res://scripts/bare/task_list_and_buttons.gd" id="8_10rq2"]
+[ext_resource type="Script" path="res://scripts/bare/did_procras_asker.gd" id="8_d17sp"]
+[ext_resource type="Script" path="res://scripts/bare/procras_list_and_buttons.gd" id="9_tx1ug"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwcgb"]
+bg_color = Color(0.3904, 0.40504, 0.61, 1)
+
+[sub_resource type="Gradient" id="Gradient_u8l7e"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.628571, 0.660377, 0.680425, 1)
+colors = PackedColorArray(0.215686, 0.223529, 0.305882, 1, 0.215686, 0.223529, 0.305882, 1, 0.170857, 0.177438, 0.246909, 1, 0.905882, 0.905882, 0.905882, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5itea"]
+gradient = SubResource("Gradient_u8l7e")
+width = 220
+height = 220
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_u4nkt"]
+offsets = PackedFloat32Array(0, 0.0158014, 0.358916, 0.489842, 0.568849, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.00146062, 0.00198774, 0.00135365, 0.00261552, 0.0308817, 0.0420265, 0.02862, 0.0552995, 0.794328, 0.806341, 0.82148, 0.239216, 0.556863, 0.760784, 0.517647, 0, 0.556863, 0.760784, 0.517647, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pula0"]
+gradient = SubResource("Gradient_u4nkt")
+width = 230
+height = 230
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_ska1g"]
+offsets = PackedFloat32Array(0, 0.0158014, 0.358916, 0.489842, 0.568849, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.00146062, 0.00198774, 0.00135365, 0.00261552, 0.0308817, 0.0420265, 0.02862, 0.0552995, 0.558443, 0.759979, 0.517546, 1, 0.556863, 0.760784, 0.517647, 0, 0.556863, 0.760784, 0.517647, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_16ox7"]
+gradient = SubResource("Gradient_ska1g")
+width = 230
+height = 230
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_borq0"]
+font_size = 30
+
+[node name="MainBare" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bp7vr")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.44362, 0.456011, 0.609096, 1)
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wwcgb")
+current_tab = 0
+
+[node name="Crastina Button" type="TabBar" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="ButtonArea" type="ReferenceRect" parent="TabContainer/Crastina Button"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+offset_bottom = -247.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BigButton" type="Button" parent="TabContainer/Crastina Button/ButtonArea"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Press Me"
+
+[node name="BigTimer" type="ReferenceRect" parent="TabContainer/Crastina Button/ButtonArea"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_ximqf")
+
+[node name="TimerBG" type="TextureRect" parent="TabContainer/Crastina Button/ButtonArea/BigTimer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -110.0
+offset_right = 110.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_5itea")
+
+[node name="ProgressTimer" type="TextureProgressBar" parent="TabContainer/Crastina Button/ButtonArea/BigTimer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.0
+offset_top = -115.0
+offset_right = 115.0
+offset_bottom = 115.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 0.01
+value = 100.0
+fill_mode = 4
+texture_under = SubResource("GradientTexture2D_pula0")
+texture_progress = SubResource("GradientTexture2D_16ox7")
+
+[node name="DigitalTimer" type="Label" parent="TabContainer/Crastina Button/ButtonArea/BigTimer"]
+show_behind_parent = true
+z_index = 1
+y_sort_enabled = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.5
+offset_top = -21.0
+offset_right = 38.5
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "01:00"
+label_settings = SubResource("LabelSettings_borq0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SecondTimer" type="Timer" parent="TabContainer/Crastina Button/ButtonArea/BigTimer"]
+process_callback = 0
+
+[node name="TextButtonsAndStuff" type="ReferenceRect" parent="TabContainer/Crastina Button"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.015
+anchor_right = 0.985
+anchor_bottom = 1.0
+offset_top = 223.0
+offset_bottom = 233.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Askers" type="VBoxContainer" parent="TabContainer/Crastina Button/TextButtonsAndStuff"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_4gs74")
+
+[node name="TaskAsker" type="VBoxContainer" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("2_ug6fc")
+
+[node name="AskLabel" type="Label" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/TaskAsker"]
+layout_mode = 2
+text = "What r u gonna do rn?"
+
+[node name="TaskButtons" type="HFlowContainer" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/TaskAsker"]
+layout_mode = 2
+
+[node name="SiblingSpot" type="Node" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/TaskAsker/TaskButtons"]
+
+[node name="TaskButton" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/TaskAsker/TaskButtons" instance=ExtResource("2_vhk1c")]
+layout_mode = 2
+text = "Godot (Coding)"
+
+[node name="TaskButton2" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/TaskAsker/TaskButtons" instance=ExtResource("2_vhk1c")]
+layout_mode = 2
+text = "Blender (Modelling)"
+
+[node name="MoreButton" type="Button" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/TaskAsker/TaskButtons"]
+layout_mode = 2
+text = " ... "
+
+[node name="AddButton" type="Button" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/TaskAsker/TaskButtons"]
+layout_mode = 2
+text = " + "
+
+[node name="Answer" type="Label" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/TaskAsker"]
+visible = false
+layout_mode = 2
+text = "✅Godot"
+
+[node name="DurationAsker" type="VBoxContainer" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("4_kn235")
+
+[node name="AskLabel" type="Label" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/DurationAsker"]
+layout_mode = 2
+text = "When do u want 2 b reminded again?"
+
+[node name="DurationButtons" type="HBoxContainer" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/DurationAsker"]
+layout_mode = 2
+
+[node name="TaskButton4" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/DurationAsker/DurationButtons" instance=ExtResource("2_vhk1c")]
+layout_mode = 2
+text = "0.1 Min"
+
+[node name="TaskButton" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/DurationAsker/DurationButtons" instance=ExtResource("2_vhk1c")]
+layout_mode = 2
+text = "5 Min"
+
+[node name="TaskButton2" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/DurationAsker/DurationButtons" instance=ExtResource("2_vhk1c")]
+layout_mode = 2
+text = "10 Min"
+
+[node name="TaskButton3" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/DurationAsker/DurationButtons" instance=ExtResource("2_vhk1c")]
+layout_mode = 2
+text = "15 Min"
+
+[node name="MoreButton" type="Button" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/DurationAsker/DurationButtons"]
+layout_mode = 2
+text = " ... "
+
+[node name="AddButton" type="Button" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/DurationAsker/DurationButtons"]
+layout_mode = 2
+text = " + "
+
+[node name="Answer" type="Label" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/DurationAsker"]
+visible = false
+layout_mode = 2
+text = "✅Godot"
+
+[node name="TimerBeforeStarting" type="VBoxContainer" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("6_qswlw")
+
+[node name="Label" type="Label" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/TimerBeforeStarting"]
+layout_mode = 2
+text = "Great! The reminder will start in a moment..."
+
+[node name="ProgressBar" type="ProgressBar" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/TimerBeforeStarting"]
+layout_mode = 2
+
+[node name="ReminderLabel" type="Label" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Your current task : Coding in Godot
+I'll ask you later if you did do your task."
+horizontal_alignment = 1
+
+[node name="DidProcrasAsker" type="VBoxContainer" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers"]
+visible = false
+layout_mode = 2
+script = ExtResource("8_d17sp")
+
+[node name="Label" type="Label" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/DidProcrasAsker"]
+layout_mode = 2
+text = "Time's up! Have you done your task yet?
+[Your task: ]"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/DidProcrasAsker"]
+visible = false
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Time's up! Have you done your task yet?
+[Your task: [b]test[/b] ][/center]"
+fit_content = true
+
+[node name="DoneOrProcrasted" type="HBoxContainer" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/DidProcrasAsker"]
+layout_mode = 2
+
+[node name="DonetaskYes" type="Button" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/DidProcrasAsker/DoneOrProcrasted"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Yes, I did!"
+
+[node name="ProcrastedNo" type="Button" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/DidProcrasAsker/DoneOrProcrasted"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Nah, I procrastinated😔"
+
+[node name="Answer" type="Label" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/DidProcrasAsker"]
+visible = false
+layout_mode = 2
+text = "✅Yes, I did"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers"]
+layout_mode = 2
+
+[node name="ProcrasthingAsker" type="VBoxContainer" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="AskLabel" type="Label" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/ProcrasthingAsker"]
+layout_mode = 2
+text = "Oh dang, what did you do instead?"
+horizontal_alignment = 1
+
+[node name="TaskButtons" type="HFlowContainer" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/ProcrasthingAsker"]
+layout_mode = 2
+
+[node name="SiblingSpot" type="Node" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/ProcrasthingAsker/TaskButtons"]
+
+[node name="TaskButton" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/ProcrasthingAsker/TaskButtons" instance=ExtResource("2_vhk1c")]
+layout_mode = 2
+text = "Eat"
+
+[node name="TaskButton2" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/ProcrasthingAsker/TaskButtons" instance=ExtResource("2_vhk1c")]
+layout_mode = 2
+text = "Watching Youtube"
+
+[node name="MoreButton" type="Button" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/ProcrasthingAsker/TaskButtons"]
+layout_mode = 2
+text = " ... "
+
+[node name="AddButton" type="Button" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/ProcrasthingAsker/TaskButtons"]
+layout_mode = 2
+text = " + "
+
+[node name="Answer" type="Label" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/ProcrasthingAsker"]
+visible = false
+layout_mode = 2
+text = "✅Godot"
+
+[node name="NewTimerAsker" type="VBoxContainer" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/NewTimerAsker"]
+custom_minimum_size = Vector2(388, 49)
+layout_mode = 2
+text = "Amazing! Would you want to make a timer of the same task?"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/NewTimerAsker"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/NewTimerAsker/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Yeah"
+
+[node name="Button2" type="Button" parent="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/NewTimerAsker/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Nevermind"
+
+[node name="Glossary" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="TabContainer" type="TabContainer" parent="TabContainer/Glossary"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025
+anchor_right = 0.975
+anchor_bottom = 0.975
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+
+[node name="Tasks" type="TabBar" parent="TabContainer/Glossary/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="TaskListAndButtons" type="VBoxContainer" parent="TabContainer/Glossary/TabContainer/Tasks"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_10rq2")
+
+[node name="TaskItemList" type="ItemList" parent="TabContainer/Glossary/TabContainer/Tasks/TaskListAndButtons"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="OptionButtons" type="HBoxContainer" parent="TabContainer/Glossary/TabContainer/Tasks/TaskListAndButtons"]
+layout_mode = 2
+
+[node name="AddButton" type="Button" parent="TabContainer/Glossary/TabContainer/Tasks/TaskListAndButtons/OptionButtons"]
+layout_mode = 2
+text = "Add New"
+
+[node name="DeleteButton" type="Button" parent="TabContainer/Glossary/TabContainer/Tasks/TaskListAndButtons/OptionButtons"]
+layout_mode = 2
+text = "Delete Selected"
+
+[node name="AddNewRow" type="HBoxContainer" parent="TabContainer/Glossary/TabContainer/Tasks/TaskListAndButtons"]
+layout_mode = 2
+
+[node name="TypeNewItem" type="LineEdit" parent="TabContainer/Glossary/TabContainer/Tasks/TaskListAndButtons/AddNewRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AddItem" type="Button" parent="TabContainer/Glossary/TabContainer/Tasks/TaskListAndButtons/AddNewRow"]
+layout_mode = 2
+text = "Add"
+
+[node name="CancelAdd" type="Button" parent="TabContainer/Glossary/TabContainer/Tasks/TaskListAndButtons/AddNewRow"]
+layout_mode = 2
+text = "Cancel"
+
+[node name="Procras-thing" type="TabBar" parent="TabContainer/Glossary/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="ProcrasListAndButtons" type="VBoxContainer" parent="TabContainer/Glossary/TabContainer/Procras-thing"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_tx1ug")
+
+[node name="ProcrasItemList" type="ItemList" parent="TabContainer/Glossary/TabContainer/Procras-thing/ProcrasListAndButtons"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="OptionButtons" type="HBoxContainer" parent="TabContainer/Glossary/TabContainer/Procras-thing/ProcrasListAndButtons"]
+layout_mode = 2
+
+[node name="AddButton" type="Button" parent="TabContainer/Glossary/TabContainer/Procras-thing/ProcrasListAndButtons/OptionButtons"]
+layout_mode = 2
+text = "Add New"
+
+[node name="DeleteButton" type="Button" parent="TabContainer/Glossary/TabContainer/Procras-thing/ProcrasListAndButtons/OptionButtons"]
+layout_mode = 2
+text = "Delete Selected"
+
+[node name="AddNewRow" type="HBoxContainer" parent="TabContainer/Glossary/TabContainer/Procras-thing/ProcrasListAndButtons"]
+layout_mode = 2
+
+[node name="TypeNewItem" type="LineEdit" parent="TabContainer/Glossary/TabContainer/Procras-thing/ProcrasListAndButtons/AddNewRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AddItem" type="Button" parent="TabContainer/Glossary/TabContainer/Procras-thing/ProcrasListAndButtons/AddNewRow"]
+layout_mode = 2
+text = "Add"
+
+[node name="CancelAdd" type="Button" parent="TabContainer/Glossary/TabContainer/Procras-thing/ProcrasListAndButtons/AddNewRow"]
+layout_mode = 2
+text = "Cancel"
+
+[connection signal="pressed" from="TabContainer/Crastina Button/ButtonArea/BigButton" to="." method="_on_big_button_pressed"]
+[connection signal="timeout" from="TabContainer/Crastina Button/ButtonArea/BigTimer/SecondTimer" to="TabContainer/Crastina Button/ButtonArea/BigTimer" method="_on_second_timer_timeout"]
+[connection signal="pressed" from="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/DidProcrasAsker/DoneOrProcrasted/DonetaskYes" to="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/DidProcrasAsker" method="_on_donetask_yes_pressed"]
+[connection signal="pressed" from="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/DidProcrasAsker/DoneOrProcrasted/ProcrastedNo" to="TabContainer/Crastina Button/TextButtonsAndStuff/Askers/DidProcrasAsker" method="_on_procrasted_no_pressed"]
+[connection signal="pressed" from="TabContainer/Glossary/TabContainer/Tasks/TaskListAndButtons/OptionButtons/AddButton" to="TabContainer/Glossary/TabContainer/Tasks/TaskListAndButtons" method="_on_add_button_pressed"]
+[connection signal="pressed" from="TabContainer/Glossary/TabContainer/Tasks/TaskListAndButtons/OptionButtons/DeleteButton" to="TabContainer/Glossary/TabContainer/Tasks/TaskListAndButtons" method="_on_delete_button_pressed"]
+[connection signal="pressed" from="TabContainer/Glossary/TabContainer/Tasks/TaskListAndButtons/AddNewRow/AddItem" to="TabContainer/Glossary/TabContainer/Tasks/TaskListAndButtons" method="_on_add_item_pressed"]
+[connection signal="pressed" from="TabContainer/Glossary/TabContainer/Tasks/TaskListAndButtons/AddNewRow/CancelAdd" to="TabContainer/Glossary/TabContainer/Tasks/TaskListAndButtons" method="_on_cancel_add_pressed"]
+[connection signal="pressed" from="TabContainer/Glossary/TabContainer/Procras-thing/ProcrasListAndButtons/OptionButtons/AddButton" to="TabContainer/Glossary/TabContainer/Procras-thing/ProcrasListAndButtons" method="_on_add_button_pressed"]
+[connection signal="pressed" from="TabContainer/Glossary/TabContainer/Procras-thing/ProcrasListAndButtons/OptionButtons/DeleteButton" to="TabContainer/Glossary/TabContainer/Procras-thing/ProcrasListAndButtons" method="_on_delete_button_pressed"]
+[connection signal="pressed" from="TabContainer/Glossary/TabContainer/Procras-thing/ProcrasListAndButtons/AddNewRow/AddItem" to="TabContainer/Glossary/TabContainer/Procras-thing/ProcrasListAndButtons" method="_on_add_item_pressed"]
+[connection signal="pressed" from="TabContainer/Glossary/TabContainer/Procras-thing/ProcrasListAndButtons/AddNewRow/CancelAdd" to="TabContainer/Glossary/TabContainer/Procras-thing/ProcrasListAndButtons" method="_on_cancel_add_pressed"]

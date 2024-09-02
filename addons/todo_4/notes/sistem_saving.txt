@@ -1,0 +1,5 @@
+- tiap activity itu ada task, waktu, durasi, apakah procras setelah itu, trus continuation ke activity lain.
+- tiap hari ada beberapa activity
+- tiap bulan ada kumpulan activity harian
+
+- ada juga sistem buat save glossary
