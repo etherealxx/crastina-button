@@ -8,41 +8,66 @@ var selected_date: Calendar.Date
 var selected_date_label: Label
 
 # Helper class for generating date labels.
+#class CalendarLabel:
+	#extends Label
+	#
+	#var clickable: bool = false
+	#
+	#signal pressed()
+	#
+	#
+	#func _init(p_text: String, p_clickable: bool = false):
+		#text = p_text
+		#horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		#label_settings = LabelSettings.new()
+		#set_font_size()
+		#if p_clickable:
+			#clickable = p_clickable
+			#mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+			#mouse_filter = Control.MOUSE_FILTER_STOP
+	#
+	#
+	#func _gui_input(event: InputEvent) -> void:
+		#if event is InputEventMouseButton and event.pressed:
+			#if clickable:
+				#pressed.emit()
+	#
+	#
+	#func set_font_size(font_size: int = 12):
+		#label_settings.font_size = font_size
+
 class CalendarLabel:
-	extends Label
-	
-	var clickable: bool = false
-	
-	signal pressed()
-	
+	extends Button
 	
 	func _init(p_text: String, p_clickable: bool = false):
 		text = p_text
-		horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		label_settings = LabelSettings.new()
+		#horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		#label_settings = LabelSettings.new()
 		set_font_size()
 		if p_clickable:
-			clickable = p_clickable
-			mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-			mouse_filter = Control.MOUSE_FILTER_STOP
+			#clickable = p_clickable
+			#mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+			#mouse_filter = Control.MOUSE_FILTER_STOP
+			pass
 	
 	
-	func _gui_input(event: InputEvent) -> void:
-		if event is InputEventMouseButton and event.pressed:
-			if clickable:
-				pressed.emit()
-	
+	#func _gui_input(event: InputEvent) -> void:
+		#if event is InputEventMouseButton and event.pressed:
+			#if clickable:
+				#pressed.emit()
 	
 	func set_font_size(font_size: int = 12):
-		label_settings.font_size = font_size
+		#label_settings.font_size = font_size
+		set("theme_override_font_sizes/font_size", font_size)
 
 func _add_month_grid_container(p_month: int):
 	var month_container = VBoxContainer.new()
 	month_container.set("theme_override_constants/separation", 10)
 	
 	var month_title = CalendarLabel.new(months_formatted[p_month - 1])
-	month_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
-	month_title.label_settings.font_color = Color("#ffffff")
+	#month_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+	#month_title.label_settings.font_color = Color("#ffffff")
+	month_title.set("theme_override_colors/font_color", Color("#ffffff"))
 	month_container.add_child(month_title)
 	
 	var month_grid = GridContainer.new()
@@ -72,17 +97,21 @@ func _ready():
 			var date_label = CalendarLabel.new(str(date.day), true)
 			if date.month == todays_date.month: #@TODO uncomment later for not current months
 				if date.is_equal(todays_date):
-					date_label.label_settings.font_color = Color("#70bafa")
+					#date_label.label_settings.font_color = Color("#70bafa")
+					date_label.set("theme_override_colors/font_color", Color("#70bafa"))
 				else:
-					date_label.label_settings.font_color = Color("#cdced2")
+					#date_label.label_settings.font_color = Color("#cdced2")
+					date_label.set("theme_override_colors/font_color", Color("#70bafa"))
 			else:
-				date_label.label_settings.font_color = Color("#414853")
+				#date_label.label_settings.font_color = Color("#414853")
+				date_label.set("theme_override_colors/font_color", Color("#cdced2"))
 			
 			date_label.pressed.connect(_on_date_pressed.bind(date, date_label))
 			month_container.add_child(date_label)
 			
 			if date.is_equal(selected_date):
-				set_selected_state(date_label)
+				#set_selected_state(date_label)
+				pass
 
 func _on_date_pressed(date: Calendar.Date, date_label: Label):
 	set_selected_state(date_label)
