@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cql1xea4i28my"]
+[gd_scene load_steps=20 format=3 uid="uid://cql1xea4i28my"]
 
 [ext_resource type="Script" path="res://scripts/main_bare.gd" id="1_bp7vr"]
 [ext_resource type="Script" path="res://scripts/bare/askers.gd" id="2_4gs74"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/bare/timer_before_starting.gd" id="6_qswlw"]
 [ext_resource type="Script" path="res://scripts/bare/task_list_and_buttons.gd" id="8_10rq2"]
 [ext_resource type="Script" path="res://scripts/bare/did_procras_asker.gd" id="8_d17sp"]
+[ext_resource type="Script" path="res://scripts/bare/calendar_gen.gd" id="9_hqqdm"]
 [ext_resource type="Script" path="res://scripts/bare/procras_list_and_buttons.gd" id="9_tx1ug"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwcgb"]
@@ -77,9 +78,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_wwcgb")
-current_tab = 0
+current_tab = 1
 
 [node name="Crastina Button" type="TabBar" parent="TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -391,10 +393,38 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Nevermind"
 
+[node name="Calendar" type="TabBar" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="CalendarGen" type="Control" parent="TabContainer/Calendar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_hqqdm")
+
+[node name="MonthCalCont" type="ColorRect" parent="TabContainer/Calendar/CalendarGen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.133333, 0.14902, 0.176471, 1)
+
+[node name="Button" type="Button" parent="TabContainer/Calendar/CalendarGen"]
+visible = false
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
 [node name="Glossary" type="TabBar" parent="TabContainer"]
 visible = false
 layout_mode = 2
-metadata/_tab_index = 1
+metadata/_tab_index = 2
 
 [node name="TabContainer" type="TabContainer" parent="TabContainer/Glossary"]
 layout_mode = 1
